@@ -1,0 +1,42 @@
+services:
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:9458:80"
+    working_dir: /var/www/backend
+    volumes:
+      - ./backend:/var/www/backend
+      - ./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/logs/nginx:/var/log/nginx
+
+  php:
+    restart: unless-stopped
+    build: docker/images/php
+    working_dir: /var/www/backend
+    command: bash -c "php-fpm"
+    volumes:
+      - ./backend:/var/www/backend
+      - ./docker/data/composer/:/root/.composer
+      - ./etc/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./etc/php/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./etc/php/docker-php-ext-pcov.ini:/usr/local/etc/php/conf.d/docker-php-ext-pcov.ini
+    environment:
+      PHP_IDE_CONFIG: "serverName=Docker"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  mysql:
+    image: mysql:8.4
+    environment:
+      - MARIADB_DATABASE=blog
+      - MARIADB_USER=default
+      - MARIADB_PASSWORD=secret
+      - MARIADB_ROOT_PASSWORD=root
+    volumes:
+      - ./docker/data/mysql8.4:/var/lib/mysql
+      - ./docker/logs/mysql8.4:/var/log/mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+
+

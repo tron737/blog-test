@@ -1,0 +1,6 @@
+.idea
+
+/docker/var/
+/docker/logs/
+/docker/data/
+
