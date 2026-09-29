@@ -1,14 +1,40 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{$title}</title>
-</head>
-<body>
+{extends file="layouts/main.tpl"}
 
-<h1>{$title}</h1>
+{block name="content"}
 
-<p>Smarty работает.</p>
+    <h1>Блог</h1>
 
-</body>
-</html>
+    {foreach $categories as $category}
+        <section class="category-section">
+
+            <div class="category-section__header">
+                <div>
+                    <h2>
+                        {$category.name|escape}
+                    </h2>
+
+                    {if $category.description}
+                        <p>
+                            {$category.description|escape}
+                        </p>
+                    {/if}
+                </div>
+
+                <a href="/category/{$category.slug}">
+                    Все статьи
+                </a>
+            </div>
+
+            <div class="post-grid">
+                {foreach $category.posts as $post}
+                    {include
+                    file="partials/post-card.tpl"
+                    post=$post
+                    }
+                {/foreach}
+            </div>
+
+        </section>
+    {/foreach}
+
+{/block}

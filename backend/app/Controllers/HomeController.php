@@ -45,6 +45,7 @@ class HomeController extends AbstractController
         unset($category);
 
         $this->render('home.tpl', [
+            'title' => 'Главная',
             'categories' => $categories,
         ]);
     }

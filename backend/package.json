@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss:build": "sass resources/scss/app.scss public/css/app.css --no-source-map",
+    "scss:watch": "sass --watch resources/scss/app.scss public/css/app.css"
+  },
+  "devDependencies": {
+    "sass": "^1.105.1"
+  },
+  "author": "",
+  "license": "ISC"
+}

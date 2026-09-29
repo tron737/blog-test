@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Страница не найдена</title>
-</head>
-<body>
+{extends file="layouts/main.tpl"}
 
-<h1>404</h1>
+{block name="content"}
 
-<p>Страница не найдена.</p>
+    <div class="error-page">
+        <h1>404</h1>
 
-<a href="/">На главную</a>
+        <p>Страница не найдена.</p>
 
-</body>
-</html>
+        <a href="/">
+            Вернуться на главную
+        </a>
+    </div>
+
+{/block}

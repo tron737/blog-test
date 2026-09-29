@@ -3,3 +3,6 @@ storage
 .php-cs-fixer.cache
 .env
 
+public/css/
+
+node_modules

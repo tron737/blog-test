@@ -39,4 +39,9 @@ services:
     ports:
       - "127.0.0.1:3306:3306"
 
-
+  node:
+    image: node:22-alpine
+    working_dir: /var/www/backend
+    volumes:
+      - ./backend:/var/www/backend
+    command: npm run scss:watch

@@ -65,7 +65,8 @@ class CategoryController extends AbstractController
             $offset,
         );
 
-        $this->view->render('category.tpl', [
+        $this->render('category.tpl', [
+            'title' => $category['name'],
             'category' => $category,
             'posts' => $posts,
             'sort' => $sort,

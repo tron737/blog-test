@@ -42,7 +42,8 @@ class PostController extends AbstractController
             3,
         );
 
-        $this->view->render('post.tpl', [
+        $this->render('post.tpl', [
+            'title' => $post['title'],
             'post' => $post,
             'similarPosts' => $similarPosts,
         ]);
